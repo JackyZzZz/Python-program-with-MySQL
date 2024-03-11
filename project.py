@@ -4,6 +4,7 @@ from constants import Constants
 import initialization
 import import_data
 import insert_use
+import updateCourse
 
 def main():
     if len(sys.argv) < 3:
@@ -13,6 +14,7 @@ def main():
     function_name = sys.argv[1]
 
     if function_name == 'import':
+        # python project.py import test_data
         folder_name = sys.argv[2]
         initialization.initialize_database()
         conn = initialization.connect()
@@ -30,6 +32,16 @@ def main():
         conn = initialization.connect()
         insert_use.insertUse(projectId, studentUCINetID, machineId, start_date, end_date, conn)
         conn.close()
+
+    if function_name == 'updateCourse':
+        # Success: python project.py updateCourse 1 "Database Management"
+        # Fail: python project.py updateCourse 2 'This is a test string that is intentionally made very long to exceed the VARCHAR(100) limit. Let us see what happens when it is inserted.'
+        courseId = int(sys.argv[2])
+        title = sys.argv[3]
+        conn = initialization.connect()
+        updateCourse.updateCourse(courseId, title, conn)
+        conn.close()
+
 
 if __name__ == "__main__":
     main()

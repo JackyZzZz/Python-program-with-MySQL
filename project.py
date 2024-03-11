@@ -5,6 +5,7 @@ import initialization
 import import_data
 import insert_use
 import updateCourse
+import listCourse
 
 def main():
     if len(sys.argv) < 3:
@@ -40,6 +41,13 @@ def main():
         title = sys.argv[3]
         conn = initialization.connect()
         updateCourse.updateCourse(courseId, title, conn)
+        conn.close()
+
+    if function_name == 'listCourse':
+        # python project.py listCourse mchang13
+        studentID = sys.argv[2]
+        conn = initialization.connect()
+        listCourse.listCourse(studentID, conn)
         conn.close()
 
 

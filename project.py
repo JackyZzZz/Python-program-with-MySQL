@@ -6,6 +6,7 @@ import import_data
 import insert_use
 import updateCourse
 import listCourse
+import popularCourse
 
 def main():
     if len(sys.argv) < 3:
@@ -50,6 +51,12 @@ def main():
         listCourse.listCourse(studentID, conn)
         conn.close()
 
+    if function_name == 'popularCourse':
+        # python project.py popularCourse 3
+        topN = int(sys.argv[2])
+        conn = initialization.connect()
+        popularCourse.popularCourse(topN, conn)
+        conn.close()
 
 if __name__ == "__main__":
     main()

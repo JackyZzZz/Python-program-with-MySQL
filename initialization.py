@@ -5,16 +5,24 @@ def connect():
     """
     Connect to the database
     """
+
+    try:
+        db_connection = mysql.connector.connect(user=Constants.USER, password=Constants.PASSWORD, database = Constants.DATABASE)
+        return db_connection
+    except mysql.connector.Error as error:
+        pass
+
+def initialize_database():
+    """
+    Initialize the database schema
+    """
+
     sql_file_path = 'cs122a_db.sql'
 
-    # Create a connection to the database
     try:
-        db_connection = mysql.connector.connect(user=Constants.USER, password=Constants.PASSWORD) # database = Constants.DATABASE
+        db_connection = mysql.connector.connect(user=Constants.USER, password=Constants.PASSWORD)
 
         cursor = db_connection.cursor()
-        # print("Successfully connected to the database")
-        # print("Initialization begin")
-
         # Open and read the SQL file
         with open(sql_file_path, 'r') as file:
             sql_script = file.read()
@@ -27,12 +35,11 @@ def connect():
                 cursor.execute(statement)
 
         db_connection.commit()
-        # print("Initialization end successfully")
 
     except mysql.connector.Error as error:
-        print(f"Failed to execute SQL script: {error}")
+        pass
 
     finally:
         if db_connection.is_connected():
             cursor.close()
-            return db_connection
+            db_connection.close()

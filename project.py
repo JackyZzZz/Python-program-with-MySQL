@@ -13,6 +13,7 @@ def main():
 
     if function_name == 'import':
         folder_name = sys.argv[2]
+        initialization.initialize_database()
         conn = initialization.connect()
         import_data.import_data(folder_name, conn)
         conn.close()

@@ -1,7 +1,7 @@
 class Constants:
-    USER = ""
+    USER = "andy"
 
-    PASSWORD = ""
+    PASSWORD = "andy61202"
 
     DATABASE = "cs122a"
 

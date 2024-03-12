@@ -1,5 +1,3 @@
-#project.py
-
 import mysql.connector
 import sys
 from constants import Constants
@@ -9,7 +7,8 @@ import insert_use
 import updateCourse
 import listCourse
 import popularCourse
-import insert_student
+import adminEmails
+import activeStudent
 
 def main():
     if len(sys.argv) < 3:
@@ -31,11 +30,11 @@ def main():
         # Fail: python project.py insertUse 999 aanthony4 1 2024-03-01 2024-03-15
         projectId = int(sys.argv[2])
         studentUCINetID = sys.argv[3]
-        machineId = int(sys.argv[4])
+        machineId_1 = int(sys.argv[4])
         start_date = sys.argv[5]
         end_date = sys.argv[6]
         conn = initialization.connect()
-        insert_use.insertUse(projectId, studentUCINetID, machineId, start_date, end_date, conn)
+        insert_use.insertUse(projectId, studentUCINetID, machineId_1, start_date, end_date, conn)
         conn.close()
 
     if function_name == 'updateCourse':
@@ -61,25 +60,21 @@ def main():
         popularCourse.popularCourse(topN, conn)
         conn.close()
 
-    if function_name == 'insertStudent':
-        # python project.py insertStudent testID test@uci.edu Alice NULL Wong
-        if len(sys.argv) != 7:
-            print(
-                "Usage: python3 project.py insertStudent [UCINetID] [email] [First] [Middle] [Last]")
-            sys.exit(1)
-
-        UCINetID = sys.argv[2]
-        email = sys.argv[3]
-        first_name = sys.argv[4]
-        middle_name = sys.argv[5] if sys.argv[5] != 'NULL' else None
-        last_name = sys.argv[6]
+    if function_name == 'adminEmails':
+        machineId_2 = int(sys.argv[2])
         conn = initialization.connect()
-        result = insert_student.insertStudent(UCINetID, email, first_name, middle_name, last_name,
-                                              conn)
-        print('Success' if result else 'Fail')
+        adminEmails.adminEmails(machineId_2, conn)
         conn.close()
+
+    if function_name == 'activeStudent':
+        machineId_3 = int(sys.argv[2])
+        N = int(sys.argv[3])
+        startDate = sys.argv[4]
+        endDate = sys.argv[5]
+        conn = initialization.connect()
+        activeStudent.activeStudent(machineId_3, N, startDate, endDate, conn)
+        conn.close()
+
 
 if __name__ == "__main__":
     main()
-
-

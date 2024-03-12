@@ -35,7 +35,5 @@ def import_data(folderName, conn):
         count = cursor.fetchone()[0]  # fetchone() returns a tuple, get the first item
         counts[table] = count
 
-    print(counts['users'])
-    print(counts['machines'])
-    print(counts['courses'])
+    print(str(counts['users']) + ',' + str(counts['machines']) + ',' + str(counts['courses']))
     cursor.close()

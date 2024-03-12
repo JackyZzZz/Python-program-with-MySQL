@@ -7,6 +7,7 @@ import insert_use
 import updateCourse
 import listCourse
 import popularCourse
+import adminEmails
 
 def main():
     if len(sys.argv) < 3:
@@ -56,6 +57,12 @@ def main():
         topN = int(sys.argv[2])
         conn = initialization.connect()
         popularCourse.popularCourse(topN, conn)
+        conn.close()
+
+    if function_name == 'adminEmails':
+        MachineId = int(sys.argv[2])
+        conn = initialization.connect()
+        adminEmails.adminEmails(MachineId, conn)
         conn.close()
 
 if __name__ == "__main__":

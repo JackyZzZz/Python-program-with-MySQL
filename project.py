@@ -9,6 +9,7 @@ import listCourse
 import popularCourse
 import adminEmails
 import activeStudent
+import machineUsage
 
 def main():
     if len(sys.argv) < 3:
@@ -40,10 +41,10 @@ def main():
     if function_name == 'updateCourse':
         # Success: python project.py updateCourse 1 "Database Management"
         # Fail: python project.py updateCourse 2 'This is a test string that is intentionally made very long to exceed the VARCHAR(100) limit. Let us see what happens when it is inserted.'
-        courseId = int(sys.argv[2])
+        courseId_1 = int(sys.argv[2])
         title = sys.argv[3]
         conn = initialization.connect()
-        updateCourse.updateCourse(courseId, title, conn)
+        updateCourse.updateCourse(courseId_1, title, conn)
         conn.close()
 
     if function_name == 'listCourse':
@@ -73,6 +74,12 @@ def main():
         endDate = sys.argv[5]
         conn = initialization.connect()
         activeStudent.activeStudent(machineId_3, N, startDate, endDate, conn)
+        conn.close()
+
+    if function_name == 'machineUsage':
+        courseId_2 = int(sys.argv[2])
+        conn = initialization.connect()
+        machineUsage.machineUsage(courseId_2, conn)
         conn.close()
 
 

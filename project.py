@@ -8,6 +8,7 @@ import updateCourse
 import listCourse
 import popularCourse
 import adminEmails
+import activeStudent
 
 def main():
     if len(sys.argv) < 3:
@@ -29,11 +30,11 @@ def main():
         # Fail: python project.py insertUse 999 aanthony4 1 2024-03-01 2024-03-15
         projectId = int(sys.argv[2])
         studentUCINetID = sys.argv[3]
-        machineId = int(sys.argv[4])
+        machineId_1 = int(sys.argv[4])
         start_date = sys.argv[5]
         end_date = sys.argv[6]
         conn = initialization.connect()
-        insert_use.insertUse(projectId, studentUCINetID, machineId, start_date, end_date, conn)
+        insert_use.insertUse(projectId, studentUCINetID, machineId_1, start_date, end_date, conn)
         conn.close()
 
     if function_name == 'updateCourse':
@@ -60,10 +61,20 @@ def main():
         conn.close()
 
     if function_name == 'adminEmails':
-        MachineId = int(sys.argv[2])
+        machineId_2 = int(sys.argv[2])
         conn = initialization.connect()
-        adminEmails.adminEmails(MachineId, conn)
+        adminEmails.adminEmails(machineId_2, conn)
         conn.close()
+
+    if function_name == 'activeStudent':
+        machineId_3 = int(sys.argv[2])
+        N = int(sys.argv[3])
+        startDate = sys.argv[4]
+        endDate = sys.argv[5]
+        conn = initialization.connect()
+        activeStudent.activeStudent(machineId_3, N, startDate, endDate, conn)
+        conn.close()
+
 
 if __name__ == "__main__":
     main()

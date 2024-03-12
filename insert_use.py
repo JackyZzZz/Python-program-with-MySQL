@@ -12,6 +12,7 @@ def insertUse(projectId, studentUCINetID, machineId, start_date, end_date, conn)
         conn.commit()
         print('Success')
     except mysql.connector.Error as error:
+        conn.rollback()
         print('Fail')
 
     finally:

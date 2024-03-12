@@ -12,6 +12,7 @@ def updateCourse(courseId, title, conn):
         conn.commit()
         print('Success')
     except mysql.connector.Error as error:
+        conn.rollback()
         print('Fail')
 
     finally:

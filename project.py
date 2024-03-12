@@ -9,6 +9,7 @@ import listCourse
 import popularCourse
 import adminEmails
 import activeStudent
+import insert_student
 import machineUsage
 
 def main():
@@ -82,6 +83,22 @@ def main():
         machineUsage.machineUsage(courseId_2, conn)
         conn.close()
 
+    if function_name == 'insertStudent':
+        # python project.py insertStudent testID test@uci.edu Alice NULL Wong
+        if len(sys.argv) != 7:
+            print(
+                "Usage: python3 project.py insertStudent [UCINetID] [email] [First] [Middle] [Last]")
+            sys.exit(1)
 
+        UCINetID = sys.argv[2]
+        email = sys.argv[3]
+        first_name = sys.argv[4]
+        middle_name = sys.argv[5] if sys.argv[5] != 'NULL' else None
+        last_name = sys.argv[6]
+        conn = initialization.connect()
+        result = insert_student.insertStudent(UCINetID, email, first_name, middle_name, last_name,
+                                              conn)
+        print('Success' if result else 'Fail')
+        conn.close()
 if __name__ == "__main__":
     main()

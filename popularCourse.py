@@ -21,7 +21,7 @@ def popularCourse(topN, conn):
         cursor.execute(query, (topN,))
         result = cursor.fetchall()
         for row in result:
-            print(row[0], row[1], row[2])
+            print(','.join([str(item) for item in row]))
 
     except mysql.connector.Error as error:
         pass

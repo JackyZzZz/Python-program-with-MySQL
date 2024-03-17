@@ -1,9 +1,9 @@
 # constants.py
 
 class Constants:
-    USER = "andy"
+    USER = ""
 
-    PASSWORD = "andy61202"
+    PASSWORD = ""
 
     DATABASE = "cs122a"
 

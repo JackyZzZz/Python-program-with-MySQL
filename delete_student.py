@@ -10,14 +10,15 @@ def deleteStudent(UCINetID, conn):
         DELETE FROM students
         WHERE UCINetID = %s
         """
-        cursor.execute(delete_student_query, (UCINetID,))
+        UCINetID_value = None if UCINetID == 'NULL' else UCINetID
+        cursor.execute(delete_student_query, (UCINetID_value,))
 
         # Delete from the 'users' table
         delete_user_query = """
         DELETE FROM users
         WHERE UCINetID = %s
         """
-        cursor.execute(delete_user_query, (UCINetID,))
+        cursor.execute(delete_user_query, (UCINetID_value,))
 
         conn.commit()
         print('Success')

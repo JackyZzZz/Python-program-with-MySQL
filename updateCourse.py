@@ -10,7 +10,12 @@ def updateCourse(courseId, title, conn):
     cursor = conn.cursor()
     try:
         query = "UPDATE courses SET Title = %s WHERE CourseId = %s"
-        cursor.execute(query, (title, courseId))
+
+        # Handle NULL values
+        courseId_values = None if courseId == 'NULL' else courseId
+        title_values = None if title == 'NULL' else title
+
+        cursor.execute(query, (title_values, courseId_values))
         conn.commit()
         print('Success')
     except mysql.connector.Error as error:

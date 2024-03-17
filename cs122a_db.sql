@@ -1,3 +1,5 @@
+# cs122a_db.sql
+
 DROP DATABASE IF EXISTS cs122a;
 CREATE DATABASE cs122a;
 USE cs122a;

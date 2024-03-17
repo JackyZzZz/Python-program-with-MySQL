@@ -1,3 +1,5 @@
+#adminEmails.py
+
 import mysql.connector
 
 def adminEmails(machineId, conn):

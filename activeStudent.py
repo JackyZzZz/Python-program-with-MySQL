@@ -1,3 +1,5 @@
+# activeStudent.py
+
 import mysql.connector
 
 def activeStudent(machineId, N, startDate, endDate, conn):

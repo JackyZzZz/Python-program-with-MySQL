@@ -1,3 +1,5 @@
+# initialization.py
+
 import mysql.connector
 from constants import Constants
 

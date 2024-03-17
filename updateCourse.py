@@ -1,3 +1,5 @@
+# UpdateCourse.py
+
 import mysql.connector
 
 def updateCourse(courseId, title, conn):

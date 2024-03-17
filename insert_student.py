@@ -33,7 +33,7 @@ def insertStudent(UCINetID, email, first_name, middle_name, last_name, conn):
         return True
 
     except mysql.connector.Error as error:
-        conn.rollback()  # Rollback on any error
+        conn.rollback()
         return False
 
     finally:

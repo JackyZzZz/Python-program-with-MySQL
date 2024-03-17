@@ -1,3 +1,5 @@
+#listCourse.py
+
 import mysql.connector
 
 def listCourse(UCINetID, conn):

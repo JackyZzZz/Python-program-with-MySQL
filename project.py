@@ -1,3 +1,5 @@
+# project.py
+
 import mysql.connector
 import sys
 from constants import Constants
@@ -11,6 +13,9 @@ import adminEmails
 import activeStudent
 import insert_student
 import machineUsage
+import add_email
+import delete_student
+import insert_machine
 
 def main():
     if len(sys.argv) < 3:
@@ -84,7 +89,7 @@ def main():
         conn.close()
 
     if function_name == 'insertStudent':
-        # python project.py insertStudent testID test@uci.edu Alice NULL Wong
+        # python project.py insertStudent testID test@uci.edu Alice NULL Wang
         if len(sys.argv) != 7:
             print(
                 "Usage: python3 project.py insertStudent [UCINetID] [email] [First] [Middle] [Last]")
@@ -100,5 +105,32 @@ def main():
                                               conn)
         print('Success' if result else 'Fail')
         conn.close()
+
+    if function_name == 'addEmail':
+        # python project.py addEmail testID test@gmail.com1
+        UCINetID = sys.argv[2]
+        email = sys.argv[3]
+        conn = initialization.connect()
+        result = add_email.addEmail(UCINetID, email, conn)
+        conn.close()
+
+    if function_name == 'deleteStudent':
+        # python project.py deleteStudent testID
+        UCINetID = sys.argv[2]
+        conn = initialization.connect()
+        result = delete_student.deleteStudent(UCINetID, conn)
+        conn.close()
+
+    if function_name == 'insertMachine':
+        # python project.py insertMachine 1023 test.com 192.168.10.5 Active "DBH 1011"
+        MachineID = int(sys.argv[2])
+        hostname = sys.argv[3]
+        IPAddr = sys.argv[4]
+        status = sys.argv[5]
+        location = sys.argv[6]
+        conn = initialization.connect()
+        result = insert_machine.insertMachine(MachineID, hostname, IPAddr, status, location, conn)
+        conn.close()
+
 if __name__ == "__main__":
     main()

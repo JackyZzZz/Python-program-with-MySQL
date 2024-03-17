@@ -89,7 +89,10 @@ def main():
         conn.close()
 
     if function_name == 'insertStudent':
-        # python project.py insertStudent testID test@uci.edu Alice NULL Wang
+        # Success: python project.py insertStudent testID test@uci.edu Alice NULL Wang
+        # Success: python project.py insertStudent testID test@uci.edu NULL NULL NULL
+        # Fail: python project.py insertStudent NULL test@uci.edu Alice NULL Wang
+        # Fail: python project.py insertStudent testID NULL Alice NULL Wang
         if len(sys.argv) != 7:
             print(
                 "Usage: python3 project.py insertStudent [UCINetID] [email] [First] [Middle] [Last]")
@@ -107,7 +110,7 @@ def main():
         conn.close()
 
     if function_name == 'addEmail':
-        # python project.py addEmail testID test@gmail.com1
+        # python project.py addEmail testID test@gmail.com
         UCINetID = sys.argv[2]
         email = sys.argv[3]
         conn = initialization.connect()

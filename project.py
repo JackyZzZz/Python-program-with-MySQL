@@ -110,7 +110,11 @@ def main():
         conn.close()
 
     if function_name == 'addEmail':
-        # python project.py addEmail testID test@gmail.com
+        # Fail: python project.py addEmail testID NULL
+        # Fail: python project.py addEmail NULL test@gmail.com
+        # Success: python project.py addEmail testID test@gmail.com
+        # Fail: python project.py addEmail testID test@gmail.com
+
         UCINetID = sys.argv[2]
         email = sys.argv[3]
         conn = initialization.connect()

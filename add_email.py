@@ -10,7 +10,12 @@ def addEmail(UCINetID, email, conn):
         INSERT INTO emails (UCINetID, Email)
         VALUES (%s, %s)
         """
-        cursor.execute(add_email_query, (UCINetID, email))
+
+        # Handle NULL values
+        UCINetID_value = None if UCINetID == 'NULL' else UCINetID
+        email_value = None if email == 'NULL' else email
+
+        cursor.execute(add_email_query, (UCINetID_value, email_value))
         conn.commit()
         print('Success')
         return True

@@ -34,10 +34,11 @@ def main():
 
     if function_name == 'insertUse':
         # Success: python project.py insertUse 2 aanthony4 1 2024-03-01 2024-03-15
+        # Fail: python project.py insertUse NULL NULL NULL 2024-03-01 2024-03-15
         # Fail: python project.py insertUse 999 aanthony4 1 2024-03-01 2024-03-15
-        projectId = int(sys.argv[2])
+        projectId = int(sys.argv[2]) if sys.argv[2] != 'NULL' else None
         studentUCINetID = sys.argv[3]
-        machineId_1 = int(sys.argv[4])
+        machineId_1 = int(sys.argv[4]) if sys.argv[4] != 'NULL' else None
         start_date = sys.argv[5]
         end_date = sys.argv[6]
         conn = initialization.connect()
@@ -131,7 +132,7 @@ def main():
     if function_name == 'insertMachine':
         # python project.py insertMachine 102 test.com 192.168.10.5 Active "DBH 1011"
         # python project.py insertMachine 1024 NULL NULL NULL NULL
-        MachineID = int(sys.argv[2])
+        MachineID = int(sys.argv[2]) if sys.argv[2] != 'NULL' else None
         hostname = sys.argv[3]
         IPAddr = sys.argv[4]
         status = sys.argv[5]

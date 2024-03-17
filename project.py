@@ -129,7 +129,8 @@ def main():
         conn.close()
 
     if function_name == 'insertMachine':
-        # python project.py insertMachine 1023 test.com 192.168.10.5 Active "DBH 1011"
+        # python project.py insertMachine 102 test.com 192.168.10.5 Active "DBH 1011"
+        # python project.py insertMachine 1024 NULL NULL NULL NULL
         MachineID = int(sys.argv[2])
         hostname = sys.argv[3]
         IPAddr = sys.argv[4]

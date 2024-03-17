@@ -1,5 +1,3 @@
-# delete_student.py
-
 import mysql.connector
 
 def deleteStudent(UCINetID, conn):

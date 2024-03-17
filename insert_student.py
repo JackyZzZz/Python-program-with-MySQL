@@ -1,5 +1,3 @@
-# insert_student.py
-
 import mysql.connector
 
 def insertStudent(UCINetID, email, first_name, middle_name, last_name, conn):

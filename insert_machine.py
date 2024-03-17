@@ -1,23 +1,21 @@
-# insert_machine.py
-
 import mysql.connector
 
 def insertMachine(MachineID, hostname, IPAddr, status, location, conn):
-    cursor = conn.cursor(buffered=True)
+    cursor = conn.cursor()
     try:
-        # Check if MachineID already exists
-        check_query = "SELECT * FROM machines WHERE MachineID = %s"
-        cursor.execute(check_query, (MachineID,))
-        if cursor.rowcount >= 1:
-            print('Fail')
-            return False
-
-        # If MachineID does not exist, proceed to insert
         insert_machine_query = """
         INSERT INTO machines (MachineID, Hostname, IPAddress, OperationalStatus, Location)
         VALUES (%s, %s, %s, %s, %s)
         """
-        cursor.execute(insert_machine_query, (MachineID, hostname, IPAddr, status, location))
+
+        # Handle NULL values
+        MachineID_value = None if MachineID == 'NULL' else MachineID
+        hostname_value = None if hostname == 'NULL' else hostname
+        IPAddr_value = None if IPAddr == 'NULL' else IPAddr
+        status_value = None if status == 'NULL' else status
+        location_value = None if location == 'NULL' else location
+
+        cursor.execute(insert_machine_query, (MachineID_value, hostname_value, IPAddr_value, status_value, location_value))
         conn.commit()
         print('Success')
         return True

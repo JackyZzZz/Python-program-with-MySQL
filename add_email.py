@@ -1,5 +1,3 @@
-# add_email.py
-
 import mysql.connector
 
 def addEmail(UCINetID, email, conn):

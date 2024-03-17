@@ -69,9 +69,9 @@ CREATE TABLE StudentUseMachinesInProject (
     StartDate DATE,
     EndDate DATE,
     PRIMARY KEY (ProjectID, StudentUCINetID, MachineID),
-    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID),
-    FOREIGN KEY (StudentUCINetID) REFERENCES Students(UCINetID),
-    FOREIGN KEY (MachineID) REFERENCES Machines(MachineID)
+    FOREIGN KEY (ProjectID) REFERENCES projects(ProjectID),
+    FOREIGN KEY (StudentUCINetID) REFERENCES students(UCINetID),
+    FOREIGN KEY (MachineID) REFERENCES machines(MachineID)
 );
 
 

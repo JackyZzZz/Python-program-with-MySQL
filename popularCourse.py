@@ -11,12 +11,12 @@ def popularCourse(topN, conn):
     cursor = conn.cursor()
     try:
         query = """
-        SELECT C.CourseID, C.Title, COUNT(SUMIP.StudentUCINetID) AS studentCount
+        SELECT C.CourseID, C.Title, COUNT(DISTINCT SUMIP.StudentUCINetID) AS studentCount
         FROM StudentUseMachinesInProject SUMIP
         JOIN projects P ON SUMIP.ProjectId = P.ProjectId 
         JOIN courses C ON P.CourseID = C.CourseID
-        GROUP BY C.CourseID
-        ORDER BY COUNT(SUMIP.StudentUCINetID) DESC, C.CourseID DESC
+        GROUP BY C.CourseID, C.Title
+        ORDER BY studentCount DESC, C.CourseID DESC
         LIMIT %s
         """
 

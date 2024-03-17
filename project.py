@@ -1,5 +1,3 @@
-# project.py
-
 import mysql.connector
 import sys
 from constants import Constants

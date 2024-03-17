@@ -19,8 +19,11 @@ def deleteStudent(UCINetID, conn):
         cursor.execute(delete_user_query, (UCINetID_value,))
 
         conn.commit()
-        print('Success')
-        return True
+
+        if cursor.rowcount == 0:
+            print('Fail')
+        else:
+            print('Success')
 
     except mysql.connector.Error as error:
         conn.rollback()

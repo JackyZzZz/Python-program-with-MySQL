@@ -17,7 +17,11 @@ def updateCourse(courseId, title, conn):
 
         cursor.execute(query, (title_values, courseId_values))
         conn.commit()
-        print('Success')
+
+        if cursor.rowcount == 0:
+            print('Fail')
+        else:
+            print('Success')
     except mysql.connector.Error as error:
         conn.rollback()
         print('Fail')
